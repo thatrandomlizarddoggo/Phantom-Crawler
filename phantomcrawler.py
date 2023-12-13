@@ -1,11 +1,25 @@
-from PyQt5.QtWidgets import *
+import platform
+
 from PyQt5.QtCore import *
 from PyQt5.QtWebEngineWidgets import *
+from PyQt5.QtWidgets import *
+
 
 class WebBrowser(QMainWindow):
 
 
     def __init__(self):
+
+        def useragent(self=None):
+            # Fetch platform and device information
+            platform_info = platform.platform()
+            device_info = platform.uname().machine
+
+            # Create the user-agent string including PyQt5 information
+            user_agent = f"PhantomCrawler/1.1 (PyQt5; {platform_info}; {device_info})"
+
+            # Set the modified user-agent for the web browser
+            self.browser.page().profile().setHttpUserAgent(user_agent)
 
 
         self.window = QWidget()
@@ -51,6 +65,9 @@ class WebBrowser(QMainWindow):
         self.window.setLayout(self.layout)
         self.window.show()
 
+        useragent(self)
+
+
     def navigate(self, url):
 
         if not url.startswith("view-source:"):
@@ -59,6 +76,7 @@ class WebBrowser(QMainWindow):
                 self.url_bar.setText(url)
         self.browser.setUrl(QUrl(url))
         
+
 
 
 app = QApplication([])
