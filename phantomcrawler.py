@@ -1,9 +1,9 @@
 import platform
 
-from PyQt5.QtCore import *
+import PyQt5.QtCore
 from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtWidgets import *
-
+from PyQt5 import QtGui
 
 class WebBrowser(QMainWindow):
 
@@ -24,6 +24,7 @@ class WebBrowser(QMainWindow):
 
         self.window = QWidget()
         self.window.setWindowTitle("Phantom Crawler")
+#        self.setWindowIcon(QtGui.QIcon('logo.png'))
 
         self.layout = QVBoxLayout()
         self.horizontal = QHBoxLayout()
@@ -60,7 +61,7 @@ class WebBrowser(QMainWindow):
         self.layout.addLayout(self.horizontal)
         self.layout.addWidget(self.browser)
 
-        self.browser.setUrl(QUrl("http://github.com"))
+        self.browser.setUrl(PyQt5.QtCore.QUrl("https://i.ibb.co/PwYsbth/logo-phantom-crawler.png"))
 
         self.window.setLayout(self.layout)
         self.window.show()
@@ -74,7 +75,7 @@ class WebBrowser(QMainWindow):
             if not url.startswith("http"):
                 url = "http://" + url
                 self.url_bar.setText(url)
-        self.browser.setUrl(QUrl(url))
+        self.browser.setUrl(PyQt5.QtCore.QUrl(url))
         
 
 
