@@ -3,7 +3,7 @@ import platform
 import PyQt5.QtCore
 from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtWidgets import *
-from PyQt5 import QtGui
+
 
 class WebBrowser(QMainWindow):
 
@@ -61,7 +61,7 @@ class WebBrowser(QMainWindow):
         self.layout.addLayout(self.horizontal)
         self.layout.addWidget(self.browser)
 
-        self.browser.setUrl(PyQt5.QtCore.QUrl("https://i.ibb.co/PwYsbth/logo-phantom-crawler.png"))
+        self.browser.setUrl(PyQt5.QtCore.QUrl("https://i.ibb.co/B6yjh11/logo.png"))
 
         self.window.setLayout(self.layout)
         self.window.show()
