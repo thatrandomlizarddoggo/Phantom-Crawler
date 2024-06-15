@@ -4,7 +4,6 @@ import PyQt5.QtCore
 from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtWidgets import *
 
-
 class WebBrowser(QMainWindow):
 
 
@@ -21,6 +20,8 @@ class WebBrowser(QMainWindow):
             # Set the modified user-agent for the web browser
             self.browser.page().profile().setHttpUserAgent(user_agent)
 
+        self.label = QLabel("© github:thatrandomlizarddoggo")
+        self.label.setMaximumHeight(30)
 
         self.window = QWidget()
         self.window.setWindowTitle("Phantom Crawler")
@@ -28,6 +29,7 @@ class WebBrowser(QMainWindow):
 
         self.layout = QVBoxLayout()
         self.horizontal = QHBoxLayout()
+        self.Copyright = QHBoxLayout()
 
         self.url_bar = QTextEdit()
         self.url_bar.setMaximumHeight(30)
@@ -50,6 +52,10 @@ class WebBrowser(QMainWindow):
         self.horizontal.addWidget(self.forward_btn)
         self.horizontal.addWidget(self.inspect_btn)
 
+        self.Copyright.addWidget(self.label)
+
+
+
         self.browser = QWebEngineView()
 
         self.go_btn.clicked.connect(lambda: self.navigate(self.url_bar.toPlainText()))
@@ -59,6 +65,7 @@ class WebBrowser(QMainWindow):
 
 
         self.layout.addLayout(self.horizontal)
+        self.layout.addLayout(self.Copyright)
         self.layout.addWidget(self.browser)
 
         self.browser.setUrl(PyQt5.QtCore.QUrl("https://i.ibb.co/B6yjh11/logo.png"))
@@ -73,7 +80,7 @@ class WebBrowser(QMainWindow):
 
         if not url.startswith("view-source:"):
             if not url.startswith("http"):
-                url = "http://" + url
+                url = "https://" + url
                 self.url_bar.setText(url)
         self.browser.setUrl(PyQt5.QtCore.QUrl(url))
         
